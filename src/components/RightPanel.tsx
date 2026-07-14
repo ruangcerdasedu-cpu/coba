@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Mail, Lock, Eye, EyeOff, Globe, ChevronDown, Check, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-export default function RightPanel() {
+interface RightPanelProps {
+  onLoginSuccess?: () => void;
+}
+
+export default function RightPanel({ onLoginSuccess }: RightPanelProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -36,11 +40,21 @@ export default function RightPanel() {
     setTimeout(() => {
       setIsLoading(false);
       triggerNotification("success", "Visual demo: Berhasil masuk ke GuruWorkspace!");
+      if (onLoginSuccess) {
+        setTimeout(() => {
+          onLoginSuccess();
+        }, 800);
+      }
     }, 1500);
   };
 
   const handleGoogleLogin = () => {
     triggerNotification("info", "Menghubungkan dengan Layanan Akun Google...");
+    setTimeout(() => {
+      if (onLoginSuccess) {
+        onLoginSuccess();
+      }
+    }, 1200);
   };
 
   const handlePlaceholderClick = (topic: string) => {
