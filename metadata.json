@@ -1,0 +1,6 @@
+{
+  "name": "GuruWorkspace",
+  "description": "AI Assistant for Teachers",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
